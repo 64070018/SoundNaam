@@ -1,0 +1,46 @@
+{
+  "userId": "1",
+  "playlistName": "like it!!!!",
+  "cover": "https://cdn.discordapp.com/attachments/979676845228318740/1163524636257030254/Awesome_Heaven_Officials_Blessing_Wallpapers_-_WallpaperAccess.png?ex=655b9342&is=65491e42&hm=06cdf1826b3dae56d43b59f478413c03080ce1c8331551e9e087c85f4bd990cb&",
+  "status": "private",
+  "date": "2012-02-11",
+  "song": [
+    {
+      "id": "1",
+      "name": "Don't Talk to Me",
+      "artist": "Tre Coast",
+      "time": "3:08",
+      "coverSong": "https://cdn.discordapp.com/attachments/979676845228318740/1163524636257030254/Awesome_Heaven_Officials_Blessing_Wallpapers_-_WallpaperAccess.png?ex=655b9342&is=65491e42&hm=06cdf1826b3dae56d43b59f478413c03080ce1c8331551e9e087c85f4bd990cb&"
+    },
+    {
+      "id": "3",
+      "name": "Water",
+      "artist": "Tyla",
+      "time": "3:21",
+      "coverSong": "https://cdn.discordapp.com/attachments/979676845228318740/1163524636257030254/Awesome_Heaven_Officials_Blessing_Wallpapers_-_WallpaperAccess.png?ex=655b9342&is=65491e42&hm=06cdf1826b3dae56d43b59f478413c03080ce1c8331551e9e087c85f4bd990cb&"
+    }
+  ]
+}
+{
+  "userId": "1",
+  "playlistName": "My POP",
+  "cover": "https://cdn.discordapp.com/attachments/979676845228318740/1018546182768836648/Imagenes_de_Coco_-_Imector.jpeg?ex=655a2c0d&is=6547b70d&hm=b6a8858668dfb31cc20d17cded7dc53d384cbe9807f82f600d663e958b7bc530&",
+  "status": "private",
+  "date": "2019-10-23",
+  "song": [
+    {
+      "id": "4",
+      "name": "Barbie Dreams",
+      "artist": "FIFTY FIFTY",
+      "time": "3:21",
+      "coverSong": "https://cdn.discordapp.com/attachments/979676845228318740/1163524636257030254/Awesome_Heaven_Officials_Blessing_Wallpapers_-_WallpaperAccess.png?ex=655b9342&is=65491e42&hm=06cdf1826b3dae56d43b59f478413c03080ce1c8331551e9e087c85f4bd990cb&"
+    },
+    {
+      "id": "1",
+      "name": "Don't Talk to Me",
+      "artist": "Tre Coast",
+      "time": "3:08",
+      "coverSong": "https://cdn.discordapp.com/attachments/979676845228318740/1163524636257030254/Awesome_Heaven_Officials_Blessing_Wallpapers_-_WallpaperAccess.png?ex=655b9342&is=65491e42&hm=06cdf1826b3dae56d43b59f478413c03080ce1c8331551e9e087c85f4bd990cb&"
+    }
+  ]
+}

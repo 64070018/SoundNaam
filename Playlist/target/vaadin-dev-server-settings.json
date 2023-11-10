@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "/Users/winepeeranut/IdeaProjects/Playlist/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "/Users/winepeeranut/IdeaProjects/Playlist/./frontend/generated/jar-resources",
+  "staticOutput": "/Users/winepeeranut/IdeaProjects/Playlist/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "/Users/winepeeranut/IdeaProjects/Playlist/target/classes/META-INF/VAADIN/config",
+  "frontendBundleOutput": "/Users/winepeeranut/IdeaProjects/Playlist/target/classes/META-INF/VAADIN/webapp",
+  "devBundleOutput": "/Users/winepeeranut/IdeaProjects/Playlist/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "/Users/winepeeranut/IdeaProjects/Playlist/src/main/dev-bundle/config",
+  "jarResourcesFolder": "/Users/winepeeranut/IdeaProjects/Playlist/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "/Users/winepeeranut/IdeaProjects/Playlist/target/sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
