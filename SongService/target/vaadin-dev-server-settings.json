@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/./frontend/generated/jar-resources",
+  "staticOutput": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/target/classes/META-INF/VAADIN/config",
+  "frontendBundleOutput": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/target/classes/META-INF/VAADIN/webapp",
+  "devBundleOutput": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/src/main/dev-bundle/config",
+  "jarResourcesFolder": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "/Users/porcupine02/Downloads/SOP-Lab-main/SongService/target/sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
