@@ -19,14 +19,25 @@ import com.vaadin.flow.theme.lumo.LumoIcon;
 
 @PageTitle("Membership comment")
 @Route(value = "artist2")
-public class ArtistView2 extends HorizontalLayout {
+public class ArtistView2 extends VerticalLayout {
     Icon lumoIcon = LumoIcon.SEARCH.create();
     Icon like = VaadinIcon.HEART_O.create();
+    Icon heart = VaadinIcon.HEART_O.create();
     Icon textcomment = VaadinIcon.COMMENT_ELLIPSIS_O.create();
+    Icon left = VaadinIcon.CHEVRON_CIRCLE_LEFT.create();
+    Icon right = VaadinIcon.CHEVRON_CIRCLE_RIGHT.create();
+    Icon play = VaadinIcon.PLAY_CIRCLE.create();
+    Icon stop = VaadinIcon.STOP.create();
+
 
 //    Div MySong = new Div();
 
     public ArtistView2(){
+        HorizontalLayout secondmain = new HorizontalLayout();
+        secondmain.setSizeFull();
+        secondmain.setPadding(false);
+        secondmain.setMargin(false);
+
         this.setSizeFull();
         this.setPadding(false);
         this.setMargin(false);
@@ -212,6 +223,40 @@ public class ArtistView2 extends HorizontalLayout {
 
         Third.add(tab);
 
-        this.add(Sidebar, Main);
+        //tab bottom
+        HorizontalLayout mainbottom = new HorizontalLayout();
+        mainbottom.setWidthFull();
+        mainbottom.setHeight(8, Unit.PERCENTAGE);
+        mainbottom.getStyle().set("background-color", "#82C0CC");
+
+        Image imagebottom = new Image("https://th.bing.com/th/id/OIP.Z4UUr7rXPvOvoALaQfeEnAHaFj?pid=ImgDet&rs=1", "cover");
+        imagebottom.setWidth(60, Unit.PIXELS);
+        imagebottom.setHeight(60, Unit.PIXELS);
+        imagebottom.getStyle().set("margin-left", "50px");
+        imagebottom.getStyle().set("margin-top", "10px");
+        imagebottom.getStyle().set("border-radius", "5px");
+
+        VerticalLayout textinfobottom = new VerticalLayout();
+        H4 namebottom = new H4("name");
+        H6 artistbottom = new H6("artist");
+        textinfobottom.add(namebottom, artistbottom);
+        textinfobottom.setWidth("15%");
+
+        HorizontalLayout iconbottom = new HorizontalLayout();
+        iconbottom.setWidth("40%");
+
+        iconbottom.add(left, stop, right);
+        iconbottom.setJustifyContentMode(JustifyContentMode.CENTER);
+
+        heart.getStyle().set("margin-top", "25px");
+        iconbottom.getStyle().set("margin-top", "25px");
+        iconbottom.getStyle().set("margin-left", "50px");
+
+        mainbottom.add(imagebottom, textinfobottom, heart, iconbottom);
+
+
+        secondmain.add(Sidebar, Main);
+
+        this.add(secondmain, mainbottom);
     }
 }

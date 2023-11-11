@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,27 +24,40 @@ import java.util.List;
 
 @PageTitle("Artist Song")
 @Route(value = "artist")
-public class ArtistView extends HorizontalLayout {
+public class ArtistView extends VerticalLayout {
     Icon lumoIcon = LumoIcon.SEARCH.create();
     Icon like = VaadinIcon.HEART_O.create();
+    Icon heart = VaadinIcon.HEART_O.create();
     Icon textcomment = VaadinIcon.COMMENT_ELLIPSIS_O.create();
+    Icon left = VaadinIcon.CHEVRON_CIRCLE_LEFT.create();
+    Icon right = VaadinIcon.CHEVRON_CIRCLE_RIGHT.create();
+    Icon play = VaadinIcon.PLAY_CIRCLE.create();
+    Icon stop = VaadinIcon.STOP.create();
+
 
 //    Div MySong = new Div();
 
     public ArtistView(){
+        HorizontalLayout secondmain = new HorizontalLayout();
+        secondmain.setSizeFull();
+        secondmain.setPadding(false);
+        secondmain.setMargin(false);
+
         this.setSizeFull();
         this.setPadding(false);
         this.setMargin(false);
 
         //nav ข้าง ๆ
         VerticalLayout Sidebar = new VerticalLayout();
+        Sidebar.setPadding(false);
+        Sidebar.setMargin(false);
+
         Sidebar.setWidth(20, Unit.PERCENTAGE);
         Sidebar.setHeightFull();
         Sidebar.getStyle().set("background-color", "#5F9DB2");
 
         //main
         VerticalLayout Main = new VerticalLayout();
-        Main.getStyle().set("background-color", "red");
         Main.setPadding(false);
         Main.setSpacing(false);
 
@@ -205,6 +219,41 @@ public class ArtistView extends HorizontalLayout {
 
         Third.add(tab);
 
-        this.add(Sidebar, Main);
+        //tab bottom
+        HorizontalLayout mainbottom = new HorizontalLayout();
+        mainbottom.setWidthFull();
+        mainbottom.setHeight(8, Unit.PERCENTAGE);
+        mainbottom.getStyle().set("background-color", "#82C0CC");
+
+        Image imagebottom = new Image("https://th.bing.com/th/id/OIP.Z4UUr7rXPvOvoALaQfeEnAHaFj?pid=ImgDet&rs=1", "cover");
+        imagebottom.setWidth(60, Unit.PIXELS);
+        imagebottom.setHeight(60, Unit.PIXELS);
+        imagebottom.getStyle().set("margin-left", "50px");
+        imagebottom.getStyle().set("margin-top", "10px");
+        imagebottom.getStyle().set("border-radius", "5px");
+
+        VerticalLayout textinfobottom = new VerticalLayout();
+        H4 namebottom = new H4("name");
+        H6 artistbottom = new H6("artist");
+        textinfobottom.add(namebottom, artistbottom);
+        textinfobottom.setWidth("15%");
+
+        HorizontalLayout iconbottom = new HorizontalLayout();
+        iconbottom.setWidth("40%");
+
+        iconbottom.add(left, stop, right);
+        iconbottom.setJustifyContentMode(JustifyContentMode.CENTER);
+
+        heart.getStyle().set("margin-top", "25px");
+        iconbottom.getStyle().set("margin-top", "25px");
+        iconbottom.getStyle().set("margin-left", "50px");
+
+        mainbottom.add(imagebottom, textinfobottom, heart, iconbottom);
+
+
+        secondmain.add(Sidebar, Main);
+
+        //main add
+        this.add(secondmain, mainbottom);
     }
 }
