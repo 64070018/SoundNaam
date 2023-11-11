@@ -146,7 +146,6 @@ public class SongPlayView extends VerticalLayout {
         rightColumn.add(search, h2);
 
 
-//        pauseButton = new Button("Pause");
         playButton.addClickListener(buttonClickEvent -> {
             if (!isPlaying) {
                 isPlaying = true;
@@ -157,11 +156,6 @@ public class SongPlayView extends VerticalLayout {
             stopAudio();
             System.out.println("stop" + this.playerAudio);
         });
-//        pauseButton.addClickListener(event -> {
-//            pauseAudio();
-//        });
-
-
 
 
         System.out.println(this.songs.size());
@@ -169,29 +163,9 @@ public class SongPlayView extends VerticalLayout {
         add(h1, footer);
 
     }
-//    public void pauseAudio() {
-//        if (playerAudio != null && !isPaused) {
-//            int currentFrame = playerAudio.getPlayBackListener();
-//            playerAudio.close();
-//            playerAudio = null;
-//            pausedFrame = currentFrame;
-//            isPaused = true;
-//        }else {
-//            try {
-//                // Create a new player starting from the remembered frame
-//                ByteArrayInputStream inputStream = new ByteArrayInputStream(dataMusic);
-//                Bitstream bitstream = new Bitstream(inputStream);
-//                bitstream.readFrame(); // Read one frame to advance the stream
-//                playerAudio = new AdvancedPlayer(inputStream);
-//                playerAudio.play(pausedFrame, Integer.MAX_VALUE); // Resume from the paused position
-//                isPaused = false;
-//            } catch (JavaLayerException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     public void playAudio(byte[] audioData) {
+
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(audioData);
             playerAudio = new AdvancedPlayer(inputStream);
@@ -200,20 +174,24 @@ public class SongPlayView extends VerticalLayout {
             playerAudio.setPlayBackListener(new PlaybackListener() {
                 @Override
                 public void playbackFinished(PlaybackEvent evt) {
+                    isPlaying = false;
                     // Handle playback finished event if needed
                 }
             });
 
             // Start playing
             playerAudio.play();
+
         } catch (JavaLayerException e) {
             e.printStackTrace();
+            isPlaying = false;
         }
     }
     public void stopAudio() {
-        if (playerAudio != null) {
+        if (playerAudio != null && isPlaying) {
             playerAudio.close();
             playerAudio = null;
+            isPlaying = false;
         }
     }
 
