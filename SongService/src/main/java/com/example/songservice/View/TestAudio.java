@@ -1,27 +1,17 @@
 package com.example.songservice.View;
 
-import com.example.songservice.POJO.Audio;
+import com.example.songservice.POJO.Music;
 import com.example.songservice.Repository.AudioRepository;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
-import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.InputStreamFactory;
-import com.vaadin.flow.server.StreamResource;
 import org.apache.commons.compress.utils.IOUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Base64;
 
 @Route("/audio")
 public class TestAudio extends VerticalLayout {
@@ -45,20 +35,19 @@ public class TestAudio extends VerticalLayout {
 
 
         // Assume base64Data is the Base64 data retrieved from MongoDB
-        String base64Data = "your_base64_data_here";
-
-        // Decode Base64 to binary
-        byte[] binaryData = Base64.getDecoder().decode(base64Data);
-
-        // Create a stream resource from the binary data
-        StreamResource resource = new StreamResource("audio.mp3", (InputStreamFactory) () ->
-                new ByteArrayInputStream(binaryData));
+//        String base64Data = "your_base64_data_here";
+//
+//        // Decode Base64 to binary
+//        byte[] binaryData = Base64.getDecoder().decode(base64Data);
+//
+//        // Create a stream resource from the binary data
+//        StreamResource resource = new StreamResource("audio.mp3", (InputStreamFactory) () ->
+//                new ByteArrayInputStream(binaryData));
 
         // Create an Audio component and set the source
-        Audio audio = new Audio(resource);
-
-        add(upload, audio);
-//        add(upload, audio, playButton);
+//        Audio audio = new Audio(resource);
+//        add(upload);
+//        add(upload, audio);
     }
 
 
@@ -71,7 +60,7 @@ public class TestAudio extends VerticalLayout {
             return;
         }
         // Create an Audio object and save it to MongoDB using the repository
-        Audio audio = new Audio();
+        Music audio = new Music();
         // Set other metadata fields
         audio.setData(data);
         audioRepository.save(audio);

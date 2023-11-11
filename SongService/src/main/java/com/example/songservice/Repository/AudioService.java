@@ -1,26 +1,39 @@
-import com.example.songservice.POJO.Audio;
+package com.example.songservice.Repository;
+
+import com.example.songservice.POJO.Music;
 import com.example.songservice.Repository.AudioRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AudioService {
-
-    private final AudioRepository audioRepository;
-
     @Autowired
-    public AudioService(AudioRepository audioRepository) {
-        this.audioRepository = audioRepository;
+    private AudioRepository repository;
+
+    public AudioService() {
     }
 
-    public List<Audio> getAllAudio() {
-        try {
-            return audioRepository.findAll();
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
+    public AudioService(AudioRepository repository) {
+        this.repository = repository;
     }
+
+
+    public Optional<Music> getAudioById(String id) {
+        Optional<Music> byId = repository.findById(id);
+        return byId;
+    }
+//    @RabbitListener(queues = "GetAudioById")
+//    public Music getAllSong(String id){
+//        try {
+//            Optional<Music> musicOptional = audioRepository.findById(id);
+//            return musicOptional.orElse(null);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            return null;
+//        }
+//    }
+
 }
