@@ -1,2 +1,9 @@
 # SoundNaam
 SOP Project
+
+## add Dependency
+    <dependency>
+        <groupId>javazoom</groupId>
+        <artifactId>jlayer</artifactId>
+        <version>1.0.1</version>
+    </dependency>
