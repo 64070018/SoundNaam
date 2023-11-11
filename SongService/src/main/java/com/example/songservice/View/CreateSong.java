@@ -5,8 +5,11 @@ import com.example.songservice.POJO.Song;
 import com.example.songservice.Repository.AudioRepository;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
@@ -29,18 +32,36 @@ public class CreateSong extends VerticalLayout {
     private AudioRepository audioRepository;
     private String audioId;
     private Text audioFile, coverFile;
-    private TextField titile, description, lyrics, album;
+    private TextField titile, album;
+    private TextArea description, lyrics;
     private Button submit;
     private Upload uploadAudio, uploadCover;
+    private H1 textmain;
 
     @Autowired
     public CreateSong(AudioRepository audioRepository) {
         this.audioRepository = audioRepository;
+
+        textmain = new H1("Upload Audio");
         titile = new TextField("Title");
-        description = new TextField("Description");
-        lyrics = new TextField("Lyrics");
+        titile.setWidth("30%");
+        titile.getStyle().set("--vaadin-input-field-border-width", "1px");
+
+        description = new TextArea("Description");
+        description.setWidth("30%");
+        description.getStyle().set("--vaadin-input-field-border-width", "1px");
+
+        lyrics = new TextArea("Lyrics");
+        lyrics.setWidth("30%");
+        lyrics.getStyle().set("--vaadin-input-field-border-width", "1px");
+
         album = new TextField("Album");
+        album.setWidth("30%");
+        album.getStyle().set("--vaadin-input-field-border-width", "1px");
+
         submit = new Button("Upload New Song");
+        submit.getStyle().set("background-color", "#FFA62B");
+
         audioFile = new Text("Audio");
         coverFile = new Text("Cover Image");
 
@@ -52,6 +73,7 @@ public class CreateSong extends VerticalLayout {
             InputStream inputStream = ((FileBuffer) uploadAudio.getReceiver()).getInputStream();
             saveAudioToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
+        uploadAudio.setWidth("30%");
 
         uploadCover = new Upload(new FileBuffer());
         uploadCover.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif");
@@ -59,7 +81,7 @@ public class CreateSong extends VerticalLayout {
             InputStream inputStream = ((FileBuffer) uploadCover.getReceiver()).getInputStream();
             saveImageToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
-
+        uploadCover.setWidth("30%");
 
         submit.addClickListener(event -> {
             System.out.println("submit");
@@ -83,7 +105,8 @@ public class CreateSong extends VerticalLayout {
 
 
 
-        add(titile, description, lyrics, album, audioFile, uploadAudio, coverFile, uploadCover, submit);
+        add(textmain, titile, description, lyrics, album, audioFile, uploadAudio, coverFile, uploadCover, submit);
+        this.setAlignItems(Alignment.CENTER);
 
     }
 
