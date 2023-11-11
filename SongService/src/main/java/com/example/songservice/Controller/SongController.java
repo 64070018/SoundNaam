@@ -49,19 +49,14 @@ public class SongController {
         }
     }
 
-//    @RequestMapping(value = "/getAudio/{id}", method = GET)
-//    public Optional<Music> getAudio(@PathVariable String id){
-//        Optional<Music> optionalMusic = (Optional<Music>) rabbitTemplate.convertSendAndReceive("SongExchange", "getAudio", id);
-//        return Optional.ofNullable(optionalMusic.orElse(null));
-//    }
 
+    @RequestMapping(value = "/getAlbum/{album}", method = GET)
+    public List<Song> getAlbum(@PathVariable String album){
+        return (List<Song>) rabbitTemplate.convertSendAndReceive("SongExchange", "getAlbum", album);
+    }
 
     @RequestMapping(value = "/getSong", method = GET)
     public List<Song> getAllSong(){
-//        String songs = (String) rabbitTemplate.convertSendAndReceive("SongExchange", "getAll", "");
-        System.out.println("songs1");
-//        System.out.println(songs);
-        System.out.println("songs2");
         return (List<Song>) rabbitTemplate.convertSendAndReceive("SongExchange", "getAll", "");
     }
     @RequestMapping(value ="/delSong", method = POST)

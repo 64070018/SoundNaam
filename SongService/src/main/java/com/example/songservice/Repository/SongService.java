@@ -32,6 +32,18 @@ public class SongService {
         }
     }
 
+    @RabbitListener(queues = "GetSongByAlbumQueue")
+    public List<Song> getSongByAlbum(String album){
+        try {
+            return repository.findByAlbum(album);
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+
+
     @RabbitListener(queues = "AddSongQueue")
     public boolean addSong(@RequestBody Song song){
 //        public boolean addSong(Song song){
