@@ -5,7 +5,9 @@ import com.example.podcastservice.POJO.Podcast;
 import com.example.podcastservice.Repository.AudioRepository;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
@@ -23,18 +25,32 @@ public class CreatePodcast extends VerticalLayout {
     private AudioRepository audioRepository;
     private String audioId;
     private Text audioFile, coverFile;
-    private TextField title, description, series;
+    private TextField title, series;
+    private TextArea description;
     private Button submit;
     private Upload uploadAudio, uploadCover;
+    private H1 textmain;
 
     @Autowired
     public CreatePodcast(AudioRepository audioRepository) {
         this.audioRepository = audioRepository;
+
+        textmain = new H1("Upload Podcast");
         title = new TextField("Title");
-        description = new TextField("Description");
+        title.setWidth("30%");
+        title.getStyle().set("--vaadin-input-field-border-width", "1px");
+
+        description = new TextArea("Description");
+        description.setWidth("30%");
+        description.getStyle().set("--vaadin-input-field-border-width", "1px");
 
         series = new TextField("Series");
+        series.setWidth("30%");
+        series.getStyle().set("--vaadin-input-field-border-width", "1px");
+
         submit = new Button("Upload New Podcast");
+        submit.getStyle().set("background-color", "#FFA62B");
+
         audioFile = new Text("Audio");
         coverFile = new Text("Cover Image");
 
@@ -46,6 +62,7 @@ public class CreatePodcast extends VerticalLayout {
             InputStream inputStream = ((FileBuffer) uploadAudio.getReceiver()).getInputStream();
             saveAudioToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
+        uploadAudio.setWidth("30%");
 
         uploadCover = new Upload(new FileBuffer());
         uploadCover.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif");
@@ -53,6 +70,7 @@ public class CreatePodcast extends VerticalLayout {
             InputStream inputStream = ((FileBuffer) uploadCover.getReceiver()).getInputStream();
             saveImageToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
+        uploadCover.setWidth("30%");
 
 
         submit.addClickListener(event -> {
@@ -78,7 +96,7 @@ public class CreatePodcast extends VerticalLayout {
 
 
         add(title, description, series, audioFile, uploadAudio, coverFile, uploadCover, submit);
-
+        this.setAlignItems(Alignment.CENTER);
     }
 
     private void saveImageToMongoDB(String fileName, String mimeType, InputStream inputStream){
