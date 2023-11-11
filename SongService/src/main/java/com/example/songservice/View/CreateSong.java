@@ -5,11 +5,8 @@ import com.example.songservice.POJO.Song;
 import com.example.songservice.Repository.AudioRepository;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
@@ -30,38 +27,20 @@ import java.util.Date;
 @Route("createSong")
 public class CreateSong extends VerticalLayout {
     private AudioRepository audioRepository;
-    private String audioId;
+    private String audioId, imageId;
     private Text audioFile, coverFile;
-    private TextField titile, album;
-    private TextArea description, lyrics;
+    private TextField titile, description, lyrics, album;
     private Button submit;
     private Upload uploadAudio, uploadCover;
-    private H1 textmain;
 
     @Autowired
     public CreateSong(AudioRepository audioRepository) {
         this.audioRepository = audioRepository;
-
-        textmain = new H1("Upload Audio");
         titile = new TextField("Title");
-        titile.setWidth("30%");
-        titile.getStyle().set("--vaadin-input-field-border-width", "1px");
-
-        description = new TextArea("Description");
-        description.setWidth("30%");
-        description.getStyle().set("--vaadin-input-field-border-width", "1px");
-
-        lyrics = new TextArea("Lyrics");
-        lyrics.setWidth("30%");
-        lyrics.getStyle().set("--vaadin-input-field-border-width", "1px");
-
+        description = new TextField("Description");
+        lyrics = new TextField("Lyrics");
         album = new TextField("Album");
-        album.setWidth("30%");
-        album.getStyle().set("--vaadin-input-field-border-width", "1px");
-
         submit = new Button("Upload New Song");
-        submit.getStyle().set("background-color", "#FFA62B");
-
         audioFile = new Text("Audio");
         coverFile = new Text("Cover Image");
 
@@ -73,19 +52,18 @@ public class CreateSong extends VerticalLayout {
             InputStream inputStream = ((FileBuffer) uploadAudio.getReceiver()).getInputStream();
             saveAudioToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
-        uploadAudio.setWidth("30%");
 
         uploadCover = new Upload(new FileBuffer());
         uploadCover.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif");
         uploadCover.addSucceededListener(event -> {
             InputStream inputStream = ((FileBuffer) uploadCover.getReceiver()).getInputStream();
-            saveImageToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
+            saveAudioToMongoDB(event.getFileName(), event.getMIMEType(), inputStream);
         });
-        uploadCover.setWidth("30%");
+
 
         submit.addClickListener(event -> {
             System.out.println("submit");
-            Song data = new Song(titile.getValue(), lyrics.getValue(), "getUserArtist", audioId, "https://pbs.twimg.com/media/F-fuiIZbgAEgCV-?format=jpg", String.valueOf(new Date()), album.getValue());
+            Song data = new Song(titile.getValue(), lyrics.getValue(), "getUserArtist","email", audioId, imageId, String.valueOf(new Date()), album.getValue(), 0, 0, 0);
 
 
             Boolean output = WebClient.create()
@@ -105,33 +83,29 @@ public class CreateSong extends VerticalLayout {
 
 
 
-        add(textmain, titile, description, lyrics, album, audioFile, uploadAudio, coverFile, uploadCover, submit);
-        this.setAlignItems(Alignment.CENTER);
+        add(titile, description, lyrics, album, audioFile, uploadAudio, coverFile, uploadCover, submit);
 
     }
 
-    private void saveImageToMongoDB(String fileName, String mimeType, InputStream inputStream){
-
-
-    }
-    private String saveAudioToMongoDB(String fileName, String mimeType, InputStream inputStream) {
-        byte[] data;
+    private void saveAudioToMongoDB(String fileName, String mimeType, InputStream inputStream) {
+        byte[] data = new byte[0];
         try {
             data = IOUtils.toByteArray(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
-            return "";
         }
-        Music audio = new Music();
+        Music media = new Music();
         // Set other metadata fields
-        audio.setData(data);
-        audio.setFileName(fileName);
-        audio.setMimeType(mimeType);
+        media.setData(data);
+        media.setFileName(fileName);
+        media.setMimeType(mimeType);
 
-        audioRepository.save(audio);
-        System.out.println(audio.getId());
-        this.audioId = audio.getId();
-
-        return audio.getId();
+        audioRepository.save(media);
+        System.out.println(media.getId());
+        if (media.getMimeType().equals("audio/mpeg")){
+            this.audioId = media.getId();
+        }else{
+            this.imageId = media.getId();
+        }
     }
 }

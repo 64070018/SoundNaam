@@ -25,19 +25,14 @@ public class SongController {
     private AudioService audioService;
 //    private Song model = new Song( "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", 12, 12, 12, "".getBytes());
 //    private Song modelUpdate = new Song("updated", "susccess", "asdf", "asdf", "asdf", "asdf", 12, 12, 12, "".getBytes());
-    private Songs models;
+
     public SongController() {
     }
 
-//    @RequestMapping(value = "/", method = GET)
-//    public String test(){
-//        return "pass";
-//    }
 
     @GetMapping("/getAudio/{id}")
     public ResponseEntity<byte[]> streamAudio(@PathVariable String id) {
         Optional<Music> audioOptional = audioService.getAudioById(id);
-
         if (audioOptional.isPresent()) {
             Music audio = audioOptional.get();
             return ResponseEntity

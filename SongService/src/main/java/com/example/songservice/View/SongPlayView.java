@@ -19,6 +19,7 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import javazoom.jl.decoder.Bitstream;
@@ -41,17 +42,17 @@ import java.util.concurrent.CompletableFuture;
 
 @Route("/song")
 public class SongPlayView extends VerticalLayout {
-//    attribute
+    //    attribute
     private List<Song> songs;
     private Music music;
 //    private List<Comment> comments;
 
-    private byte[] dataMusic;
+    private byte[] dataMusic, dataImage;
 
 
 
 
-//    ui component
+    //    ui component
     private TextField search;
     private Button ad, update, delete, clear, playPauseButton;
     Icon lumoIcon = LumoIcon.SEARCH.create();
@@ -60,7 +61,7 @@ public class SongPlayView extends VerticalLayout {
     TabSheet tabSheet;
     VerticalLayout leftColumn, rightColumn;
     HorizontalLayout h1, h2, listSong;
-    Image cover;
+    Image cover, test;
     Div upNext = new Div();
     Div lyrics = new Div();
     Div comment = new Div();
@@ -121,6 +122,10 @@ public class SongPlayView extends VerticalLayout {
 
 
 
+        StreamResource resource = new StreamResource("image.jpg", () -> new ByteArrayInputStream(dataImage));
+
+        test = new Image(resource, "asdfjalksdfjklasdfj");
+
         cover = new Image("https://pbs.twimg.com/media/F-FWz5gbMAAuPP_?format=jpg", "Alternative text");
         cover.setWidth("720px");
         cover.setHeight("500px");
@@ -160,7 +165,7 @@ public class SongPlayView extends VerticalLayout {
 
         System.out.println(this.songs.size());
         h1.add(leftColumn, rightColumn);
-        add(h1, footer);
+        add(test, h1, footer);
 
     }
 
@@ -230,6 +235,7 @@ public class SongPlayView extends VerticalLayout {
 
         System.out.println(this.songs.get(0).getDataAudio());
         String DataAudioId = this.songs.get(0).getDataAudio();
+        String imageId = this.songs.get(0).getImage();
 // พัง!!!!
 //        this.music = WebClient.create()
 //                .get()
@@ -252,8 +258,17 @@ public class SongPlayView extends VerticalLayout {
                 .bodyToMono(byte[].class)
                 .block();
 
+        byte[] dataImage = webClientBuilder.build()
+                .get()
+                .uri("http://localhost:8080/getAudio/" + imageId)
+                .accept(MediaType.APPLICATION_OCTET_STREAM)
+                .retrieve()
+                .bodyToMono(byte[].class)
+                .block();
+
 
         this.dataMusic = audioData;
+        this.dataImage = dataImage;
 
 // Now 'audioData' contains the raw audio data
 //        System.out.println("music data: " + Arrays.toString(audioData));

@@ -14,6 +14,7 @@ public class Song implements Serializable {
     private String title;
     private String lyrics;
     private String artist;
+    private String email;
     private String dataAudio;
     private String image;
     private String date;
@@ -25,21 +26,12 @@ public class Song implements Serializable {
     public Song() {
     }
 
-    public Song(String title, String lyrics, String artist, String dataAudio, String image, String date, String album) {
-        this.title = title;
-        this.lyrics = lyrics;
-        this.artist = artist;
-        this.dataAudio = dataAudio;
-        this.image = image;
-        this.date = date;
-        this.album = album;
-    }
 
-    public Song(String _id, String title, String lyrics, String artist, String dataAudio, String image, String date, String album, double like, double dislike, double view) {
-        this._id = _id;
+    public Song(String title, String lyrics, String artist,String email, String dataAudio, String image, String date, String album, double like, double dislike, double view) {
         this.title = title;
         this.lyrics = lyrics;
         this.artist = artist;
+        this.email = email;
         this.dataAudio = dataAudio;
         this.image = image;
         this.date = date;
@@ -48,4 +40,5 @@ public class Song implements Serializable {
         this.dislike = dislike;
         this.view = view;
     }
+
 }

@@ -14,4 +14,8 @@ public interface SongRepository extends MongoRepository<Song, String> {
     public Song findByName(String title);
     @Query(value="{album:'?0'}")
     public List<Song> findByAlbum(String album);
+    @Query(value="{artist:'?0'}")
+    public List<Song> findByArtist(String artist);
+    @Query(value="{email:'?0'}")
+    public List<Song> findByEmail(String email);
 }
