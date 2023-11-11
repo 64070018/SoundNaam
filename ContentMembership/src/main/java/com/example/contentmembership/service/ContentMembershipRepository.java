@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ContentMembershipRepository extends MongoRepository<ContentMembership, String> {
-    @Query(value="{title:'?0'}")
-    public ContentMembership findByTitle(String title);
     @Query(value="{artist:'?0'}")
     public ContentMembership findByArtist(String artist);
 

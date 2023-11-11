@@ -5,25 +5,28 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Document("ContentMember")
 public class ContentMembership implements Serializable {
     @Id
     private String _id;
-    private String title;
     private String content;
     private String artist;
-    private double view;
+    private String email;
+    private Date date;
+    private int like;
+
+    public ContentMembership(String content, String artist, String email, Date date, int like) {
+        this.content = content;
+        this.artist = artist;
+        this.email = email;
+        this.date = date;
+        this.like = like;
+    }
 
     public ContentMembership() {
     }
 
-    public ContentMembership(String _id, String title, String content, String artist, double view) {
-        this._id = _id;
-        this.title = title;
-        this.content = content;
-        this.artist = artist;
-        this.view = view;
-    }
 }
