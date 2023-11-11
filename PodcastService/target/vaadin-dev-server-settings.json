@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/./frontend/generated/jar-resources",
+  "staticOutput": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "C:\\Users\\meen5\\Downloads\\SoundNaam-main (1)\\SoundNaam-main\\PodcastService\\target\\classes\\META-INF\\VAADIN\\config",
+  "frontendBundleOutput": "C:\\Users\\meen5\\Downloads\\SoundNaam-main (1)\\SoundNaam-main\\PodcastService\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "devBundleOutput": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/src/main/dev-bundle/config",
+  "jarResourcesFolder": "C:/Users/meen5/Downloads/SoundNaam-main (1)/SoundNaam-main/PodcastService/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "C:\\Users\\meen5\\Downloads\\SoundNaam-main (1)\\SoundNaam-main\\PodcastService\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
